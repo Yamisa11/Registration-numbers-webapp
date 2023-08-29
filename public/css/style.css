@@ -1,0 +1,96 @@
+body{
+    background-image: url("../images/2.jpg");
+   
+}
+
+.container{
+    padding: 1%;
+    margin: 2% 17%;
+    text-align: center;
+    background-color: #a3a380;
+    font-family:'Times New Roman', Times, serif;
+    height: 42em;border-radius: 10px;
+    width: 60%;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+.display{
+    margin: 2.5em 2em 1em 8em;
+    display: flex;
+    flex-wrap: wrap;
+  
+}
+.displayReg{
+    border:3px solid;
+    border-radius: 5px;
+    background-color:rgb(244, 180, 17);
+    color:rgb(46, 45, 45);
+    width: 28%;
+    height: 1.7em;
+    text-align: center;
+    padding-top: 2.5%;
+    margin-top: 0.7em;
+    margin-right: 0.6em;
+    font:bold;
+    font-size:x-large;
+}
+button{
+    border-radius: 5px;
+    border: none;
+    background-color: #778da9;
+    width: 15%;
+    height: 2.8em;
+    font-size:20px;
+    font-weight: bold;
+    
+}
+input, #towns{
+    width: 60%;
+    height: 3em;
+    margin: 1em 1em;
+    border-radius: 5px;
+    font-size: large;
+}
+.errorDisplay{
+    background-color: crimson;
+    border-radius: 10px;
+    font-size:x-large;
+    
+
+}
+.warning{
+    background-color: rgb(243, 191, 108);
+    border-radius: 10px;
+    font-size:x-large;
+}
+
+@media  screen and (max-width : 800px){
+    .displayReg{
+        width:40%;
+        font-size: medium;
+    }
+    body{
+        font-size: medium;
+       
+
+    }
+    input,#towns{
+        width: 50%;
+    }
+    button{
+        font-size: medium;
+        width: 20%;
+    }
+    .display{
+        margin-left: 2em;
+    }
+    .container{
+        width: 90%;
+        margin: auto;
+        margin-top: 10%;
+
+    }
+    h1{
+        word-wrap: break-word;
+    }
+
+}
