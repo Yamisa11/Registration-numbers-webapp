@@ -26,8 +26,8 @@ export default function RegistrationNumbers() {
     }
   }
   async function getTownRegistrations(id,database) {
-    if (id =="all"){
-      townRegistrations = await database.getAll()
+    if (id =="ALL"){
+      townRegistrations = await database.getAllRegistrations()
     }else{
 
       townRegistrations = await database.getAllFromTown(id)

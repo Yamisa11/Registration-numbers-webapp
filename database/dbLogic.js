@@ -22,10 +22,22 @@ export default function RegistrationDBLogic(database){
         return result
     }
 
+    async function getAllRegistrations(){
+        let result = await database.any('SELECT registrations FROM registration_table')
+        return result;
+    }
+
+    async function reset(){
+       let result = await database.any('DELETE FROM registration_table')   
+       return result
+    }
+
     return{
         getAll,
         insertValues,
         getLocationIndicator,
-        getAllFromTown
+        getAllFromTown,
+        getAllRegistrations,
+        reset
     }
 }

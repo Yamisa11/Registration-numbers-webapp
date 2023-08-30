@@ -28,7 +28,7 @@ app.use(
 app.use(flash());
 
 let registrationFunction = registration();
-let registrationArray;
+let registrationArray = await database.getAll();
 let townArray
 let errors;
 
@@ -45,20 +45,26 @@ app.post("/registration", async (req, res) => {
   console.log(register);
   let loc = registrationFunction.checklocIndicator(register);
   console.log(loc);
-  registrationFunction.setAllRegistrations(register,database);
+  await registrationFunction.setAllRegistrations(register,database);
   // console.log(registrationArray);
   registrationArray = await database.getAll()
   console.log(registrationArray);
-  errors = registrationFunction.errors(register);
+  errors =  registrationFunction.errors(register);
   req.flash("error", errors);
   res.redirect("/");
 });
 
 app.post("/selected", async (req,res) => {
-  let town_id = parseInt(req.body.towns)
+  let town_id = req.body.towns
   console.log(town_id);
   registrationArray = await registrationFunction.getTownRegistrations(town_id,database)
   console.log(registrationArray);
+  res.redirect('/')
+})
+
+app.post("/reset", async (req,res) => {
+  await database.reset()
+  registrationArray = []
   res.redirect('/')
 })
 
