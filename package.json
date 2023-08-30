@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": ">= 16.0.0",
+    "npm": ">= 6.0.0"
+  },
   "directories": {
     "test": "test"
   },
