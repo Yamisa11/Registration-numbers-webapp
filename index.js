@@ -29,6 +29,7 @@ app.use(flash());
 
 let registrationFunction = registration();
 let registrationArray;
+let townArray
 let errors;
 
 app.get("/", (req, res) => {
@@ -36,7 +37,7 @@ app.get("/", (req, res) => {
   res.render("index", {
     theRegistration: registrationArray,
     theError: errorMsg,
-  });
+    });
 });
 
 app.post("/registration", async (req, res) => {
@@ -52,6 +53,14 @@ app.post("/registration", async (req, res) => {
   req.flash("error", errors);
   res.redirect("/");
 });
+
+app.post("/selected", async (req,res) => {
+  let town_id = parseInt(req.body.towns)
+  console.log(town_id);
+  registrationArray = await registrationFunction.getTownRegistrations(town_id,database)
+  console.log(registrationArray);
+  res.redirect('/')
+})
 
 let PORT = process.env.PORT || 2000;
 app.listen(PORT, () => {

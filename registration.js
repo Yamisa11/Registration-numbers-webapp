@@ -3,6 +3,7 @@ export default function RegistrationNumbers() {
   let locIndicator;
   let regex = /[@!#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]/;
   let allRegistrations = [];
+  let townRegistrations = []
 
   function setRegistration(regNumber) {
     theRegNumber = regNumber.trim();
@@ -24,9 +25,14 @@ export default function RegistrationNumbers() {
       await database.insertValues(theRegNumber.toUpperCase())
     }
   }
-  async function getAllRegistrations() {
-   allRegistrations = await database.getAll()
-   return allRegistrations;
+  async function getTownRegistrations(id,database) {
+    if (id =="all"){
+      townRegistrations = await database.getAll()
+    }else{
+
+      townRegistrations = await database.getAllFromTown(id)
+    }
+   return townRegistrations
   }
 
   //   function classListDisplay() {
@@ -58,7 +64,7 @@ export default function RegistrationNumbers() {
     getRegistration,
     checklocIndicator,
     setAllRegistrations,
-    getAllRegistrations,
+    getTownRegistrations,
     errors
   };
 }

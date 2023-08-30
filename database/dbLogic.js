@@ -17,9 +17,15 @@ export default function RegistrationDBLogic(database){
         await database.any('INSERT INTO registration_table (registrations, town_id) VALUES ($1, $2)', [regNumber, theId])
     }
 
+    async function getAllFromTown(theId){
+        let result = await database.any('SELECT registrations FROM registration_table WHERE town_id = $1', [theId])
+        return result
+    }
+
     return{
         getAll,
         insertValues,
-        getLocationIndicator
+        getLocationIndicator,
+        getAllFromTown
     }
 }

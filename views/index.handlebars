@@ -9,15 +9,17 @@
         </form>
         
       <div class="dropdown">
+        <form action="/selected" method="POST">
         <select name="towns" id="towns">
            
             <option value="ALL">All Towns</option>  
-            <option value="CA">Cape Town</option> 
-            <option value="EC">Eastern Cape</option> 
-            <option value="GP">Gauteng</option> 
-            <option value="CJ">Paarl</option> 
+            <option value= "1" >Cape Town</option> 
+            <option value="4">Eastern Cape</option> 
+            <option value="3">Gauteng</option> 
+            <option value="2">Paarl</option> 
         </select>
-        <button class="show">SHOW</button>
+        <button type="submit" class="show">SHOW</button>
+        </form>
       </div>
         <div class="display">
             {{#each theRegistration}}
