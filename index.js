@@ -33,10 +33,12 @@ let townArray
 let errors;
 
 app.get("/", (req, res) => {
-  let errorMsg = req.flash("error")[0];
+  let resetMsg = req.flash("resetMsg")
+  let errorMsg = req.flash("error");
   res.render("index", {
     theRegistration: registrationArray,
     theError: errorMsg,
+    resetMessage: resetMsg
     });
 });
 
@@ -49,7 +51,8 @@ app.post("/registration", async (req, res) => {
   // console.log(registrationArray);
   registrationArray = await database.getAll()
   console.log(registrationArray);
-  errors =  registrationFunction.errors(register);
+  errors =  registrationFunction.errors(register,loc)
+  console.log(errors);;
   req.flash("error", errors);
   res.redirect("/");
 });
@@ -64,6 +67,7 @@ app.post("/selected", async (req,res) => {
 
 app.post("/reset", async (req,res) => {
   await database.reset()
+  req.flash("resetMsg", "Successfully cleared database!")
   registrationArray = []
   res.redirect('/')
 })

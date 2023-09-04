@@ -3,8 +3,14 @@
         <form action="/registration" method="POST">
             <input type="text" name="regNo" class="regNo" placeholder=".e.g CA1243" maxlength="10" value="">
         <button type="submit" class="addBtn">ADD</button>
-        <div class="messageText">
             <p class="errorDisplay">{{theError}}</p>
+             <script>
+
+          setTimeout(function () {
+          document.querySelector('.errorDisplay').style.display = 'none'; },
+          3500);
+        </script>
+        <div class="messageText">
         </div>
         </form>
         
@@ -26,6 +32,13 @@
                 <p class="displayReg">{{registrations}}</p>
             {{/each}}
         </div>
+        <h2 class="success" style="color: green;">{{resetMessage}}</h2>
+        <script>
+
+          setTimeout(function () {
+          document.querySelector('.success').style.display = 'none'; },
+          3500);
+        </script>
         <div> <form action="/reset" method="POST">
           <button type="submit">RESET</button>
         </form> </div>
