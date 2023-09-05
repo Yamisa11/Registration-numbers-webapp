@@ -27,10 +27,10 @@ app.use(
 );
 app.use(flash());
 
-let theRegistrations = await database.getAllRegistrations();
-console.log(theRegistrations);
+let registrationArray = await database.getAllRegistrations();
+
 let registrationFunction = registration();
-let registrationArray = await database.getAll();
+// let registrationArray = await database.getAll();
 let errors;
 
 app.get("/", (req, res) => {
@@ -51,7 +51,7 @@ app.post("/registration", async (req, res) => {
   await registrationFunction.setAllRegistrations(req.body.regNo, database);
   // let theId = await database.getLocationIndicator(register);
   // console.log(theId);
-  registrationArray = await database.getAll();
+  registrationArray = await database.getAllRegistrations();
   // await registrationFunction.setAllRegistrations(register, database);
 
   errors = await registrationFunction.errors(req.body.regNo, loc, database);
@@ -62,12 +62,12 @@ app.post("/registration", async (req, res) => {
 
 app.post("/selected", async (req, res) => {
   let town_id = req.body.towns;
-  console.log(town_id);
+  
   registrationArray = await registrationFunction.getTownRegistrations(
     town_id,
     database
   );
-  console.log(registrationArray);
+ 
   res.redirect("/");
 });
 

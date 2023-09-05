@@ -5,13 +5,7 @@ export default function RegistrationNumbers() {
   let allRegTowns = ['CA', 'CJ', 'EC','GP'];
   let townRegistrations = [];
 
-  // function setRegistration(regNumber) {
-  //   theRegNumber = regNumber;
-  //   return theRegNumber.toUpperCase();
-  // }
-  // function getRegistration() {
-  //   return theRegNumber.toUpperCase();
-  // }
+  
   function checklocIndicator(theRegNumber) {
     locIndicator = theRegNumber.slice(0, 2);
     return locIndicator.toUpperCase();
@@ -30,7 +24,7 @@ export default function RegistrationNumbers() {
 
   async function setAllRegistrations(theRegNumber, database) {
     let theRegistrations = await database.getAllRegistrations()
-    let loca = theRegNumber.slice(0, 2);
+    let loca = theRegNumber.slice(0,2);
     let loc = loca.toUpperCase();
 
     let theErrors = await errors(theRegNumber, loc);

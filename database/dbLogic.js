@@ -27,8 +27,13 @@ export default function RegistrationDBLogic(database){
     }
 
     async function getAllFromTown(theId){
+        let theRegistrations = []
         let result = await database.any('SELECT registrations FROM registration_table WHERE town_id = $1', [theId])
-        return result
+        for (let i = 0; i < result.length; i++) {
+            const element = result[i];
+            theRegistrations.push(element.registrations)
+        }
+        return theRegistrations
     }
 
     async function getAllRegistrations(){
