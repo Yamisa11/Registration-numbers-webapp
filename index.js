@@ -27,9 +27,10 @@ app.use(
 );
 app.use(flash());
 
+let theRegistrations = await database.getAllRegistrations()
+console.log(theRegistrations);
 let registrationFunction = registration();
 let registrationArray = await database.getAll();
-let townArray
 let errors;
 
 app.get("/", (req, res) => {
@@ -47,11 +48,13 @@ app.post("/registration", async (req, res) => {
   console.log(register);
   let loc = registrationFunction.checklocIndicator(register);
   console.log(loc);
-  await registrationFunction.setAllRegistrations(register,database);
-  // console.log(registrationArray);
+ await registrationFunction.setAllRegistrations(register,database);
+ let theId = await database.getLocationIndicator(register)
+ console.log(theId);
   registrationArray = await database.getAll()
-  console.log(registrationArray);
-  errors =  registrationFunction.errors(register,loc)
+  let message = await registrationFunction.setAllRegistrations(register,database)
+  console.log(message);
+  errors = await registrationFunction.errors(register,loc,database)
   console.log(errors);;
   req.flash("error", errors);
   res.redirect("/");
@@ -72,7 +75,7 @@ app.post("/reset", async (req,res) => {
   res.redirect('/')
 })
 
-let PORT = process.env.PORT || 2000;
+let PORT = process.env.PORT || 2020;
 app.listen(PORT, () => {
   console.log("App started...", PORT);
 });

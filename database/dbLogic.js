@@ -8,6 +8,7 @@ export default function RegistrationDBLogic(database){
 
     async function getLocationIndicator(regNumber) {
         let locIndicator = regNumber.slice(0, 2)
+        locIndicator = locIndicator.toUpperCase()
         try {
             const result = await database.one('SELECT id FROM towns_table WHERE towns = $1', [locIndicator])
         return result.id;
@@ -31,8 +32,13 @@ export default function RegistrationDBLogic(database){
     }
 
     async function getAllRegistrations(){
+        let theRegistrations = []
         let result = await database.any('SELECT registrations FROM registration_table')
-        return result;
+        for (let i = 0; i < result.length; i++) {
+            const element = result[i];
+            theRegistrations.push(element.registrations)
+        }
+        return theRegistrations;
     }
 
     async function reset(){

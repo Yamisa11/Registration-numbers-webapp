@@ -16,16 +16,34 @@ export default function RegistrationNumbers() {
     locIndicator = theRegNumber.slice(0, 2);
     return locIndicator.toUpperCase();
   }
+  async function errors(theRegNumber, loc,database) {
+    let theRegistrations = await database.getAllRegistrations()
+      let errMsg;
+      let loca = loc.toUpperCase()
+      if (theRegNumber == "") {
+        errMsg = "Please enter registration number";
+      }else if (allRegTowns.includes(loca) == false) {
+      errMsg = 'Please enter valid registration'
+     }else if (theRegistrations.includes(theRegNumber.toUpperCase())) {
+      errMsg = "Registration number already exists"
+     }else{ errMsg = ''}
+      return errMsg;
+    }
 
   async function setAllRegistrations(theRegNumber, database) {
     let loca = theRegNumber.slice(0, 2);
     let loc = loca.toUpperCase();
+    let message = "Yamisa"
 
-    if (errors(theRegNumber, loc) == "") {
+    if (errors(theRegNumber, loc,database) == '') {
       if (regex.test(theRegNumber) === false) {
         await database.insertValues(theRegNumber.toUpperCase());
+        
       }
+      message= "Errors passed"
     }
+    return message
+   
   }
   async function getTownRegistrations(id, database) {
     if (id == "ALL") {
@@ -36,17 +54,7 @@ export default function RegistrationNumbers() {
     return townRegistrations;
   }
 
-  function errors(theRegNumber, loc) {
-    let errMsg = "";
-    let loca = loc.toUpperCase()
-    if (theRegNumber == "") {
-      errMsg = "Please enter registration number";
-    }
-   if (allRegTowns.includes(loca) == false) {
-    errMsg = 'Please enter valid registration'
-   }
-    return errMsg;
-  }
+ 
   return {
     setRegistration,
     getRegistration,
