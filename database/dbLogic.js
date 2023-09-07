@@ -20,7 +20,7 @@ export default function RegistrationDBLogic(database){
     async function insertValues(regNumber) {
         let theId = await getLocationIndicator(regNumber)
        try {
-        await database.any('INSERT INTO registration_table (registrations, town_id) VALUES ($1, $2)', [regNumber, theId])
+        await database.oneOrNone('INSERT INTO registration_table (registrations, town_id) VALUES ($1, $2)', [regNumber, theId])
        } catch (error) {
         console.error('Error inserting registration data:', error)
        }
@@ -28,7 +28,7 @@ export default function RegistrationDBLogic(database){
 
     async function getAllFromTown(theId){
         let theRegistrations = []
-        let result = await database.any('SELECT registrations FROM registration_table WHERE town_id = $1', [theId])
+        let result = await database.manyOrNone('SELECT registrations FROM registration_table WHERE town_id = $1', [theId])
         for (let i = 0; i < result.length; i++) {
             const element = result[i];
             theRegistrations.push(element.registrations)
@@ -47,7 +47,7 @@ export default function RegistrationDBLogic(database){
     }
 
     async function reset(){
-       let result = await database.any('DELETE FROM registration_table')   
+       let result = await database.none('DELETE FROM registration_table')   
        return result
     }
 
