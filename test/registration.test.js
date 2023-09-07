@@ -1,16 +1,26 @@
 import assert from "assert"
-import registration  from "../registration.js";
+import RegistrationDBLogic from "../database/dbLogic.js";
+import pgPromise from 'pg-promise';
 
-describe("Registration number factory function tests", function(){
-    it("should be able to set and get registration number CA74664", function(){
-        var regNumbers = registration()
-        regNumbers.setRegistration("CA74664")
-        assert.equal("CA74664", regNumbers.getRegistration())
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:coder123@localhost:5432/registrations';
+
+const db = pgPromise()(connectionString);
+
+
+describe('Registration Numbers App database tests', () => {
+    let registrationDBLogic = RegistrationDBLogic(db)
+
+    beforeEach(async () => {
+        await registrationDBLogic.reset()
     })
-    it("should be able to check the location for registration number GP77B152 and return GP", function(){
-        var regNumbers = registration()
-        regNumbers.setRegistration("GP77B152")
-        assert.equal("GP", regNumbers.checklocIndicator("GP77B152"))
-    })
-  
+
+    it('should be able to insert registration number value and retrieve it', async () => {
+        const result= await registrationDBLogic.getLocationIndicator('CA1555');
+       
+    
+        assert.strictEqual(result, '1');
+      });
+
+     
+
 })

@@ -62,6 +62,16 @@ input, #towns{
     border-radius: 10px;
     font-size:x-large;
 }
+.noTown{
+    background-color: rgb(221, 236, 249);
+    border-radius: 10px;
+    
+}
+.regErr{
+    background-color: crimson;
+    border-radius: 10px;
+    font-size:x-large; 
+}
 
 @media  screen and (max-width : 800px){
     .displayReg{

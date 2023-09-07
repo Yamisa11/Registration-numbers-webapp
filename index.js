@@ -29,45 +29,51 @@ app.use(flash());
 
 let registrationArray = await database.getAllRegistrations();
 
-let registrationFunction = registration();
-// let registrationArray = await database.getAll();
+let registrationFunction = registration()
 let errors;
+let tError;
+let newRegError
 
 app.get("/", (req, res) => {
   let resetMsg = req.flash("resetMsg");
   let errorMsg = req.flash("error");
+  let townError = req.flash("townError");
+  let newRegError = req.flash("newRegError")
   res.render("index", {
     theRegistration: registrationArray,
     theError: errorMsg,
     resetMessage: resetMsg,
+    theTownError: townError,
+    regError: newRegError
   });
 });
 
 app.post("/registration", async (req, res) => {
-  // let register = registrationFunction.setRegistration(req.body.regNo);
-  // console.log(register);
   let loc = registrationFunction.checklocIndicator(req.body.regNo);
-  // console.log(loc);
-  await registrationFunction.setAllRegistrations(req.body.regNo, database);
-  // let theId = await database.getLocationIndicator(register);
-  // console.log(theId);
-  registrationArray = await database.getAllRegistrations();
-  // await registrationFunction.setAllRegistrations(register, database);
 
-  errors = await registrationFunction.errors(req.body.regNo, loc, database);
-  // console.log(errors);
+ newRegError = await registrationFunction.setAllRegistrations(req.body.regNo, database);
+  registrationArray = await database.getAllRegistrations();
+  errors = await registrationFunction.errors(req.body.regNo, loc);
+
   req.flash("error", errors);
+  req.flash("newRegError",newRegError)
   res.redirect("/");
 });
 
 app.post("/selected", async (req, res) => {
   let town_id = req.body.towns;
-  
+
   registrationArray = await registrationFunction.getTownRegistrations(
     town_id,
     database
   );
- 
+  tError = await registrationFunction.townErrors(town_id, database);
+  req.flash("townError", tError);
+  res.redirect("/");
+});
+
+app.post("/all", async (req, res) => {
+  registrationArray = await database.getAllRegistrations();
   res.redirect("/");
 });
 

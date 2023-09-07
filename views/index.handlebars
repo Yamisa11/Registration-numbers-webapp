@@ -1,44 +1,72 @@
 <h1>Registration number list</h1>
-      <h3>Please enter registration number <span class="maxi">(max.length is 10)</span> from Cape Town (CA), Paarl (CJ), Gauteng(GP) or Eastern Cape (EC)</h3>
-        <form action="/registration" method="POST">
-            <input type="text" name="regNo" class="regNo" placeholder=".e.g CA1243" maxlength="10" value="">
-        <button type="submit" class="addBtn">ADD</button>
-            <p class="errorDisplay">{{theError}}</p>
-             <script>
+<h3>Please enter registration number
+  <span class="maxi">(max.length is 10)</span>
+  from Cape Town (CA), Paarl (CJ), Gauteng(GP) or Eastern Cape (EC)</h3>
+<form action="/registration" method="POST">
+  <input
+    type="text"
+    name="regNo"
+    class="regNo"
+    placeholder=".e.g CA1243"
+    maxlength="10"
+    value=""
+  />
+  <button type="submit" class="addBtn">ADD</button>
+  <p class="errorDisplay">{{theError}}</p>
+  <script>
 
-          setTimeout(function () {
-          document.querySelector('.errorDisplay').style.display = 'none'; },
-          3500);
-        </script>
-        <div class="messageText">
-        </div>
-        </form>
-        
-      <div class="dropdown">
-        <form action="/selected" method="POST">
-        <select name="towns" id="towns">
-           
-            <option value="ALL">All Towns</option>  
-            <option value= "1" >Cape Town</option> 
-            <option value="4">Eastern Cape</option> 
-            <option value="3">Gauteng</option> 
-            <option value="2">Paarl</option> 
-        </select>
-        <button type="submit" class="show">SHOW</button>
-        </form>
-      </div>
-        <div class="display">
-            {{#each theRegistration}}
-                <p class="displayReg">{{this}}</p>
-            {{/each}}
-        </div>
-        <h2 class="success" style="color: green;">{{resetMessage}}</h2>
-        <script>
+    setTimeout(function () {
+    document.querySelector('.errorDisplay').style.display = 'none'; }, 3500);
+  </script>
+  <p class="regErr">
+    {{regError}}
+  </p>
+  <script>
 
-          setTimeout(function () {
-          document.querySelector('.success').style.display = 'none'; },
-          3500);
-        </script>
-        <div> <form action="/reset" method="POST">
-          <button type="submit">RESET</button>
-        </form> </div>
+    setTimeout(function () {
+    document.querySelector('.regErr').style.display = 'none'; }, 3500);
+  </script>
+  <div class="messageText">
+  </div>
+</form>
+
+<div class="dropdown">
+  <form action="/selected" method="POST">
+    <select name="towns" id="towns">
+
+      <option value="1">Cape Town</option>
+      <option value="4">Eastern Cape</option>
+      <option value="3">Gauteng</option>
+      <option value="2">Paarl</option>
+    </select>
+    <button type="submit" class="show">SHOW</button>
+  </form>
+   
+</div>
+<div class="display">
+  {{#each theRegistration}}
+    <p class="displayReg">{{this}}</p>
+  {{/each}}
+</div>
+<h2 class="success" style="color: green;">{{resetMessage}}</h2>
+
+<script>
+
+  setTimeout(function () { document.querySelector('.success').style.display =
+  'none'; }, 3500);
+</script>
+<h2 class="noTown">{{theTownError}}</h2>
+<script>
+
+  setTimeout(function () { document.querySelector('.noTown').style.display =
+  'none'; }, 3500);
+</script>
+<div >
+  <form action="/reset" method="POST">
+    <button type="submit">RESET</button>
+  </form>
+  <form action="/all" method="POST">
+
+    <button type="submit">SHOW ALL</button></form>
+  
+ </div>

@@ -11,14 +11,14 @@ export default function RegistrationNumbers() {
     return locIndicator.toUpperCase();
   }
   async function errors(theRegNumber, loc) {
- 
     let errMsg=''
-    let loca = loc.toUpperCase()
     if (theRegNumber == "") {
       errMsg = "Please enter registration number";
-    }else if (allRegTowns.includes(loca) == false) {
+    }else if (allRegTowns.includes(loc) == false) {
     errMsg = 'Please enter valid registration'
-   }else{ errMsg = ''}
+   }else{
+    errMsg = ''
+   }
     return errMsg;
   }
 
@@ -26,25 +26,42 @@ export default function RegistrationNumbers() {
     let theRegistrations = await database.getAllRegistrations()
     let loca = theRegNumber.slice(0,2);
     let loc = loca.toUpperCase();
+    let msg = ''
 
     let theErrors = await errors(theRegNumber, loc);
     if (theErrors == '') {
       if (regex.test(theRegNumber) === false) {
        if (theRegistrations.includes(theRegNumber.toUpperCase()) == false) {
         await database.insertValues(theRegNumber.toUpperCase());
+       }else{
+        msg = "Registration number already exists"
        }
       }
 
     }
-   
+   return msg
   }
+  
   async function getTownRegistrations(id, database) {
     if (id == "ALL") {
       townRegistrations = await database.getAllRegistrations();
-    } else {
+    } else if (id >=1 ){
       townRegistrations = await database.getAllFromTown(id);
     }
     return townRegistrations;
+  }
+
+  async function townErrors(id,database){
+    let msg = ''
+    let idReg = await database.getAllFromTown(id)
+
+    if (id) {
+      if (idReg.length < 1) {
+        msg = "No available registration for this town"
+      } 
+    }
+
+    return msg
   }
 
  
@@ -53,5 +70,6 @@ export default function RegistrationNumbers() {
     setAllRegistrations,
     getTownRegistrations,
     errors,
+    townErrors
   };
 }
