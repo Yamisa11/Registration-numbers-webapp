@@ -2,7 +2,7 @@ export default function RegistrationDBLogic(database){
 
 
     async function getAll() {
-        const result = await database.any('SELECT * FROM registration_table')
+        const result = await database.any('SELECT (registrations,town_id) FROM registration_table')
         return result;
     }
 
