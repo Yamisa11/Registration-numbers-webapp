@@ -15,7 +15,7 @@ describe('Registration Numbers App database tests', () => {
     })
 
     it('should be able to insert and get all the registrations from the registration table as objects', async () => {
-        await registrationDBLogic.insertValues('CJ15762');
+        await registrationDBLogic.insertValues('CJ15762')
         await registrationDBLogic.insertValues('CY15762')
         await registrationDBLogic.insertValues('GP15762')
     
