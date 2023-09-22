@@ -5,7 +5,7 @@ CREATE TABLE towns_table(
 
 CREATE TABLE registration_table(
     id serial,
-    registrations VARCHAR(9) NOT NULL,
+    registrations VARCHAR(11) NOT NULL,
     town_id int, 
     FOREIGN KEY (town_id) REFERENCES towns_table(id)
 );

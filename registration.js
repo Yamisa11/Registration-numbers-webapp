@@ -1,4 +1,4 @@
-export default function RegistrationNumbers() {
+export default function RegistrationNumbers(database) {
   let theRegNumber = "";
   let locIndicator;
   let regex = /[@!#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]/;
@@ -22,7 +22,7 @@ export default function RegistrationNumbers() {
     return errMsg;
   }
 
-  async function setAllRegistrations(theRegNumber, database) {
+  async function setAllRegistrations(theRegNumber) {
     let theRegistrations = await database.getAllRegistrations()
     let loca = theRegNumber.slice(0,2);
     let loc = loca.toUpperCase();
@@ -42,7 +42,7 @@ export default function RegistrationNumbers() {
    return msg
   }
   
-  async function getTownRegistrations(id, database) {
+  async function getTownRegistrations(id) {
     if (id == "ALL") {
       townRegistrations = await database.getAllRegistrations();
     } else if (id >=1 ){
@@ -51,7 +51,7 @@ export default function RegistrationNumbers() {
     return townRegistrations;
   }
 
-  async function townErrors(id,database){
+  async function townErrors(id){
     let msg = ''
     let idReg = await database.getAllFromTown(id)
 

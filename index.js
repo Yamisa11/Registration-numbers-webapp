@@ -29,7 +29,7 @@ app.use(flash());
 
 let registrationArray = await database.getAllRegistrations();
 
-let registrationFunction = registration()
+let registrationFunction = registration(database)
 let errors;
 let tError;
 let newRegError
@@ -51,7 +51,7 @@ app.get("/", (req, res) => {
 app.post("/registration", async (req, res) => {
   let loc = registrationFunction.checklocIndicator(req.body.regNo);
 
- newRegError = await registrationFunction.setAllRegistrations(req.body.regNo, database);
+ newRegError = await registrationFunction.setAllRegistrations(req.body.regNo);
   registrationArray = await database.getAllRegistrations();
   errors = await registrationFunction.errors(req.body.regNo, loc);
 
@@ -64,10 +64,9 @@ app.post("/selected", async (req, res) => {
   let town_id = req.body.towns;
 
   registrationArray = await registrationFunction.getTownRegistrations(
-    town_id,
-    database
+    town_id
   );
-  tError = await registrationFunction.townErrors(town_id, database);
+  tError = await registrationFunction.townErrors(town_id);
   req.flash("townError", tError);
   res.redirect("/");
 });

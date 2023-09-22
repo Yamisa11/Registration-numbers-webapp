@@ -63,6 +63,6 @@ describe('Registration Numbers App database tests', () => {
         await registrationDBLogic.insertValues('EC15762')
     
         const result = await registrationDBLogic.reset();
-        assert.deepStrictEqual(result, []);
+        assert.deepStrictEqual(result, null);
       });
 })
