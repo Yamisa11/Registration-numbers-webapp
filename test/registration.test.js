@@ -20,7 +20,7 @@ describe('Registration Numbers App database tests', () => {
         await registrationDBLogic.insertValues('EC15762')
     
         const result = await registrationDBLogic.getAll();
-        assert.deepStrictEqual(result, [{row:'(CJ15762,)'},{row: '(CY15762,)'} , {row: '(EC15762,)'}]);
+        assert.deepEqual(result, [{row:'(CJ15762,)'},{row: '(CY15762,)'} , {row: '(EC15762,)'}]);
       });
 
     it('should be able to check for the location of the registration and return its id', async () => {
