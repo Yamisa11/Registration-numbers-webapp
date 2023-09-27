@@ -83,7 +83,7 @@ app.post("/reset", async (req, res) => {
   res.redirect("/");
 });
 
-let PORT = process.env.PORT || 2020;
+let PORT = process.env.PORT || 3030;
 app.listen(PORT, () => {
   console.log("App started...", PORT);
 });
