@@ -28,8 +28,8 @@ body{
     height: 1.4em;
     text-align: center;
     padding-top: 2%;
-    margin-top: 0.7em;
-    margin-right: 0.6em;
+    margin-top: 0.5em;
+    margin-right: 0.5em;
     font:bold;
     font-size:x-large;
 }
@@ -81,7 +81,9 @@ input, #towns{
     border-radius: 10px;
     font-size:x-large; 
 }
-
+.floatAll{
+    float:right !important
+}
 
 @media  screen and (max-width : 800px){
     .displayReg{
