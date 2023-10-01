@@ -24,14 +24,14 @@ body{
     border-radius: 5px;
     background-color:rgb(244, 180, 17);
     color:rgb(46, 45, 45);
-    width: 35%;
+    width: 25%;
     height: 1.4em;
     text-align: center;
     padding-top: 2%;
     margin-top: 0.5em;
     margin-right: 0.5em;
     font:bold;
-    font-size:x-large;
+    font-size:medium;
 }
 button{
     border-radius: 5px;
@@ -63,7 +63,7 @@ button{
 } */
 input, #towns{
     width: 60%;
-    height: 3em;
+    height: 2.5em;
     margin: 1em 1em;
     border-radius: 5px;
     font-size: large;
