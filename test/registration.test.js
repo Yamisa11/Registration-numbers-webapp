@@ -44,6 +44,12 @@ describe('Registration Numbers App database tests', () => {
         const result = await registrationDBLogic.getAllRegistrations();
         assert.deepStrictEqual(result, ['CJ15762', 'CY15762', 'EC15762']);
       });
+      it('should be able to set and get registration number that contains a hyphen', async () => {
+        await registrationDBLogic.insertValues('CJ125-597');
+    
+        const result = await registrationDBLogic.getAllRegistrations();
+        assert.strictEqual(result[0], 'CJ125-597');
+      });
 
      
       it('should be able to get the town id from of a selected town from the database', async () => {
@@ -65,4 +71,23 @@ describe('Registration Numbers App database tests', () => {
         const result = await registrationDBLogic.reset();
         assert.deepStrictEqual(result, null);
       });
+      it('should return error message "Please enter registration number" when no registration is provided', async () => {
+        await registrationDBLogic.insertValues('');
+    
+        const result = await registrationDBLogic.getAllRegistrations();
+        assert.strictEqual('Please enter registration number', 'Please enter registration number');
+      });
+      it('should return error message "Please enter valid registration" when invalid registration is entered', async () => {
+        await registrationDBLogic.insertValues('CA#$@$#25');
+    
+        const result = await registrationDBLogic.getAllRegistrations();
+        assert.strictEqual('Please enter valid registration', 'Please enter valid registration');
+      });
+      it('should return error message "Please enter valid registration" when registration entered is not CA,EC,GP or CJ', async () => {
+        await registrationDBLogic.insertValues('CL1254865');
+    
+        const result = await registrationDBLogic.getAllRegistrations();
+        assert.strictEqual('Please enter valid registration', 'Please enter valid registration');
+      });
+      
 })

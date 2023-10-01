@@ -16,7 +16,7 @@ app.set("views", "./views");
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json
+// parse application/ json
 app.use(bodyParser.json());
 app.use(
   session({
@@ -83,7 +83,7 @@ app.post("/reset", async (req, res) => {
   res.redirect("/");
 });
 
-let PORT = process.env.PORT || 3030;
+let PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("App started...", PORT);
 });

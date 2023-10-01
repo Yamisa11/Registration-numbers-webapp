@@ -37,21 +37,25 @@ button{
     border-radius: 5px;
     border: none;
     background-color: #778da9;
-    width: 15%;
+    width: 60%;
     height: 2.8em;
     font-size:18px;
     font-weight: bold;
     
 }
-.two{
+button :hover{
+    background-color: blue;
+    color: antiquewhite;
+}
+/* .two{
     border-radius: 5px;
     border: none;
     background-color: #778da9;
-    width: 7%;
+    width: 10%;
     height: 2.8em;
     font-size:16px;
     font-weight: bold;
-}
+} */
 input, #towns{
     width: 60%;
     height: 3em;
@@ -81,9 +85,10 @@ input, #towns{
     border-radius: 10px;
     font-size:x-large; 
 }
-.floatAll{
-    float:right !important
-}
+/* .floatAll{
+    float:right !important;
+    
+} */
 
 @media  screen and (max-width : 800px){
     .displayReg{
