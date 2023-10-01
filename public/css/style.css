@@ -52,15 +52,7 @@ button{
     float: left !important;
     width: 40% !important;
 }
-/* .two{
-    border-radius: 5px;
-    border: none;
-    background-color: #778da9;
-    width: 10%;
-    height: 2.8em;
-    font-size:16px;
-    font-weight: bold;
-} */
+
 input, #towns{
     width: 60%;
     height: 2.5em;
@@ -71,14 +63,9 @@ input, #towns{
 .errorDisplay{
     background-color: crimson;
     border-radius: 10px;
-    font-size:x-large;
+    font-size:large;
     
 
-}
-.warning{
-    background-color: rgb(243, 191, 108);
-    border-radius: 10px;
-    font-size:x-large;
 }
 .noTown{
     background-color: rgb(221, 236, 249);
