@@ -24,7 +24,7 @@ body{
     border-radius: 5px;
     background-color:rgb(244, 180, 17);
     color:rgb(46, 45, 45);
-    width: 25%;
+    width: 35%;
     height: 1.4em;
     text-align: center;
     padding-top: 2%;
@@ -43,9 +43,14 @@ button{
     font-weight: bold;
     
 }
-button :hover{
-    background-color: blue;
-    color: antiquewhite;
+.right{
+    float: right !important;
+    width: 58% !important;
+
+}
+.left{
+    float: left !important;
+    width: 40% !important;
 }
 /* .two{
     border-radius: 5px;
