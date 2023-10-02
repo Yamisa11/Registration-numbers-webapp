@@ -15,12 +15,12 @@ describe('Registration Numbers App database tests', () => {
     })
 
     it('should be able to insert and get all the registrations from the registration table as objects', async () => {
-        await registrationDBLogic.insertValues('CJ15762')
         await registrationDBLogic.insertValues('CY15762')
-        await registrationDBLogic.insertValues('GP15762')
+        await registrationDBLogic.insertValues('CY69965')
+        
     
         const result = await registrationDBLogic.getAll();
-        assert.deepEqual(result, [{row:'(CJ15762,)'},{row: '(CY15762,)'} , {row: '(GP15762,)'}]);
+        assert.deepEqual(result, [{row: '(CY15762,)'} , {row: '(CY69965,)'}]);
       });
 
     it('should be able to check for the location of the registration and return its id', async () => {
