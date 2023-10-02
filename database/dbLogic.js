@@ -9,21 +9,14 @@ export default function RegistrationDBLogic(database){
     async function getLocationIndicator(regNumber) {
         let locIndicator = regNumber.slice(0, 2)
         locIndicator = locIndicator.toUpperCase()
-        try {
-            const result = await database.one('SELECT id FROM towns_table WHERE towns = $1', [locIndicator])
-        return result.id;
-        } catch (error) {
-            console.error('error', error)
-        }
+        const result = await database.any('SELECT id FROM towns_table WHERE towns = $1', [locIndicator])
+      
+        return result;
     }
 
     async function insertValues(regNumber) {
         let theId = await getLocationIndicator(regNumber)
-       try {
-        await database.oneOrNone('INSERT INTO registration_table (registrations, town_id) VALUES ($1, $2)', [regNumber, theId])
-       } catch (error) {
-        console.error('Error inserting registration data:', error)
-       }
+        await database.oneOrNone('INSERT INTO registration_table (registrations, town_id) VALUES ($1, $2)', [regNumber, theId.id])
     }
 
     async function getAllFromTown(theId){

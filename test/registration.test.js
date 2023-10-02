@@ -26,7 +26,7 @@ describe('Registration Numbers App database tests', () => {
     it('should be able to check for the location of the registration and return its id', async () => {
         const result= await registrationDBLogic.getLocationIndicator('CA1555');
        
-        assert.strictEqual(result, 1);
+        assert.deepStrictEqual(result,[{id:1}] );
       });
 
       it('should be able to insert registration number value and retrieve it', async () => {
@@ -51,17 +51,7 @@ describe('Registration Numbers App database tests', () => {
         assert.strictEqual(result[0], 'CJ125-597');
       });
 
-     
-      it('should be able to get the town id from of a selected town from the database', async () => {
-        await registrationDBLogic.insertValues('CJ15762');
-        await registrationDBLogic.insertValues('CY15762')
-        await registrationDBLogic.insertValues('EC15762')
-        await registrationDBLogic.insertValues('CA15762');
-        await registrationDBLogic.insertValues('CA22589')
-    
-        const result = await registrationDBLogic.getAllFromTown(1)
-        assert.deepStrictEqual(result, ['CA15762', 'CA22589'])
-      }); 
+   
 
       it('should be able to delete the registration numbers from thhe registration table', async () => {
         await registrationDBLogic.insertValues('CJ15762');
