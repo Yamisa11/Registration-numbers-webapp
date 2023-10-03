@@ -51,16 +51,6 @@ describe('Registration Numbers App database tests', () => {
         assert.strictEqual(result[0], 'CJ125-597');
       });
 
-   
-
-      it('should be able to delete the registration numbers from thhe registration table', async () => {
-        await registrationDBLogic.insertValues('CJ15762');
-        await registrationDBLogic.insertValues('CY15762')
-        await registrationDBLogic.insertValues('EC15762')
-    
-        const result = await registrationDBLogic.reset();
-        assert.deepStrictEqual(result, null);
-      });
       it('should return error message "Please enter registration number" when no registration is provided', async () => {
         await registrationDBLogic.insertValues('');
     
@@ -80,4 +70,12 @@ describe('Registration Numbers App database tests', () => {
         assert.strictEqual('Please enter valid registration', 'Please enter valid registration');
       });
       
+      it('should be able to delete the registration numbers from thhe registration table', async () => {
+        await registrationDBLogic.insertValues('CJ15762');
+        await registrationDBLogic.insertValues('CY15762')
+        await registrationDBLogic.insertValues('EC15762')
+    
+        const result = await registrationDBLogic.reset();
+        assert.deepStrictEqual(result, null);
+      });
 })

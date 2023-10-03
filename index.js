@@ -62,10 +62,11 @@ app.post("/registration", async (req, res) => {
 
 app.post("/selected", async (req, res) => {
   let town_id = req.body.towns;
-
+console.log(town_id);
   registrationArray = await registrationFunction.getTownRegistrations(
     town_id
   );
+  console.log(registrationArray);
   tError = await registrationFunction.townErrors(town_id);
   req.flash("townError", tError);
   res.redirect("/");
