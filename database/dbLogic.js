@@ -16,7 +16,9 @@ export default function RegistrationDBLogic(database){
 
     async function insertValues(regNumber) {
         let theId = await getLocationIndicator(regNumber)
+        theId = theId[0]
         await database.oneOrNone('INSERT INTO registration_table (registrations, town_id) VALUES ($1, $2)', [regNumber, theId.id])
+        return theId
     }
 
     async function getAllFromTown(theId){
